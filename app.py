@@ -75,7 +75,10 @@ st.markdown('<div class="main-title">Driver Safety Monitoring System</div>', uns
 st.markdown('<div class="sub-title">AI-Based Driver Behavior & Complaint Analysis</div>', unsafe_allow_html=True)
 
 # ----------- Load Models -----------
-image_model = tf.keras.models.load_model("image_model.h5")
+image_model = tf.keras.models.load_model(
+    "image_model.h5",
+    compile=False
+)
 text_model = pickle.load(open("text_model.pkl", "rb"))
 vectorizer = pickle.load(open("tfidf_vectorizer.pkl", "rb"))
 
@@ -132,4 +135,5 @@ if st.button("Run Safety Analysis"):
         st.markdown('</div>', unsafe_allow_html=True)
 
     else:
+
         st.warning("Please upload driver image and enter complaint text.")
